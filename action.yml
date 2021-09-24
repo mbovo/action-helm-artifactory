@@ -1,5 +1,8 @@
 name: 'Helm Artifactory Publisher'
 description: GitHub Action for packaging, testing helm charts and publishing to Artifactory helm repo'
+branding:
+  icon: 'archive'
+  color: 'blue'
 runs:
   using: "composite"
   steps:
