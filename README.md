@@ -1,4 +1,4 @@
-# action-helm-tools
+# action-helm-artifactory
 
 GitHub Action for packaging, testing helm charts and publishing to Artifactory helm repo
 
@@ -32,6 +32,7 @@ ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }} # ARTIFACTORY_PASSWORD
 CHART_VERSION: # Overide helm chart version when pushing
 HELM_VERSION: # Override helm version. Default "3.5.1"
 HELM_ARTIFACTORY_PLUGIN_VERSION: # Override helm artifactory plugin version. Default "v1.0.2"
+CHART_VERSION: # if defined override version in Chart.yaml. Default is unset
 ```
 
 ## Example workflow
