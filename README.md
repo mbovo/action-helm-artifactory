@@ -22,8 +22,13 @@ _Note this action is written to specifically work with Helm repos in Artifactory
 ```yaml
 CHART_DIR: manifests/charts/mycomponent # path where the helm chart is located
 ARTIFACTORY_URL: # Artifactory registry https://<company>.jfrog.io/<company>
+
 ARTIFACTORY_USERNAME: ${{ secrets.ARTIFACTORY_USERNAME }} # ARTIFACTORY_USERNAME (Artifactory username) must be set in GitHub Repo secrets
-ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }} # ARTIFACTORY_PASSWORD (Artifactory api key) must be set in GitHub Repo secrets
+ARTIFACTORY_PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }} # ARTIFACTORY_PASSWORD (Artifactory password) must be set in GitHub Repo secrets
+
+OR
+
+ARTIFACTORY_API_KEY: ${{ secrets.ARTIFACTORY_API_KEY }} # ARTIFACTORY_API_KEY (Artifactory api key) must be set in GitHub Repo secrets
 ```
 
 ## Optional Environment variables
