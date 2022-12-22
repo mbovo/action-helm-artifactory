@@ -36,6 +36,7 @@ case "${ACTION}" in
     "push")
         helm_push
         ;;
+    "cleanup")
+        remove_helm
+        ;;
 esac
-
-remove_helm

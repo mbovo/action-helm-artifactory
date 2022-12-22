@@ -11,23 +11,24 @@ print_title(){
     echo "#####################################################"
 }
 
-
-fix_chart_version(){
-    if [[ -z "$CHART_VERSION" ]]; then
-        print_title "Calculating chart version"
-        echo "Installing prerequisites"
-        pip3 install PyYAML
-        pushd "$CHART_DIR"
-        CANDIDATE_VERSION=$(python3 -c "import yaml; f=open('Chart.yaml','r');  p=yaml.safe_load(f.read()); print(p['version']); f.close()" )
-        popd
-        echo "${GITHUB_EVENT_NAME}"
-        if [ "${GITHUB_EVENT_NAME}" == "pull_request" ]; then
-            CHART_VERSION="${CANDIDATE_VERSION}-$(git rev-parse --short "$GITHUB_SHA")"
-        else
-            CHART_VERSION="${CANDIDATE_VERSION}"
-        fi
-        export CHART_VERSION
+get_chart_version(){
+    if [ -n "$CHART_VERSION" ]; then
+        echo "CHART_VERSION variable is already set (value: $CHART_VERSION), will override Chart.yaml"
+        return
     fi
+    print_title "Calculating chart version"
+	echo "Installing prerequisites"
+	pip3 install PyYAML
+    pushd "$CHART_DIR"
+    CANDIDATE_VERSION=$(python3 -c "import yaml; f=open('Chart.yaml','r');  p=yaml.safe_load(f.read()); print(p['version']); f.close()" )
+    popd
+    echo "${GITHUB_EVENT_NAME}"
+    if [ "${GITHUB_EVENT_NAME}" == "pull_request" ]; then
+        CHART_VERSION="${CANDIDATE_VERSION}-$(git rev-parse --short "$GITHUB_SHA")"
+    else
+        CHART_VERSION="${CANDIDATE_VERSION}"
+    fi
+    export CHART_VERSION
 }
 
 get_helm() {
