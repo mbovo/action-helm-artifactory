@@ -10,7 +10,7 @@ source "$SCRIPT_DIR/common.sh"
 
 install_helm
 install_artifactory_plugin
-fix_chart_version
+get_chart_version
 
 case "${ACTION}" in
     "check")
@@ -36,6 +36,7 @@ case "${ACTION}" in
     "push")
         helm_push
         ;;
+    "cleanup")
+        remove_helm
+        ;;
 esac
-
-remove_helm
