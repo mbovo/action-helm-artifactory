@@ -54,7 +54,7 @@ jobs:
   #   run:
 
     - name: "Helm checks"
-      uses: mbovo/action-helm-tools@v1.0.0
+      uses: mbovo/action-helm-artifactory@v1.0.0
       with:
         action: "check"
       env:
@@ -83,7 +83,7 @@ jobs:
     #   run:
 
     - name: "Helm publish"
-      uses: mbovo/action-helm-tools@v1.0.0
+      uses: mbovo/action-helm-artifactory@v1.0.0
       with:
         action: "push"
       env:
