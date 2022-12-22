@@ -51,7 +51,7 @@ install_helm() {
 install_artifactory_plugin(){
     print_title "Install helm artifactory plugin"
     if ! (helm plugin list  | grep -q push-artifactory); then
-        helm plugin install https://github.com/belitre/helm-push-artifactory-plugin --version ${HELM_ARTIFACTORY_PLUGIN_VERSION}
+        helm plugin install https://github.com/belitre/helm-push-artifactory-plugin --version "${HELM_ARTIFACTORY_PLUGIN_VERSION}"
     fi
 }
 
