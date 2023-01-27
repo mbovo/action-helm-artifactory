@@ -29,17 +29,3 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
       - run: |
           echo Calculated Next Tag is ${{ steps.tag_version.outputs.new_tag }}
-
-  post_slack:
-    runs-on: ubuntu-latest
-    needs: tagging
-    steps:
-      - name: Post to a Slack channel
-        if: ${{ success() }}
-        id: slack_success
-        uses: slackapi/slack-github-action@v1.23.0
-        with:
-          channel-id: 'sdcadmin-operator'
-          slack-message: ':cool-doge: `${{github.repository}}` new version: ${{needs.tagging.outputs.next_tag}}'
-        env:
-          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
