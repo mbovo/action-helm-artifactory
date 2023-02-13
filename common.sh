@@ -83,9 +83,9 @@ helm_push(){
         extra_args=""
     fi
     if [[ -v ARTIFACTORY_API_KEY ]]; then
-        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --api-key "${ARTIFACTORY_API_KEY}" --version "${CHART_VERSION}" ${extra_args}
+        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --api-key "${ARTIFACTORY_API_KEY}" --version "${CHART_VERSION}" "${extra_args}"
     elif [[ -v ARTIFACTORY_PASSWORD ]] && [[ -v ARTIFACTORY_USERNAME ]]; then
-        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --username "${ARTIFACTORY_USERNAME}" --password "${ARTIFACTORY_PASSWORD}" --version "${CHART_VERSION}" ${extra_args}
+        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --username "${ARTIFACTORY_USERNAME}" --password "${ARTIFACTORY_PASSWORD}" --version "${CHART_VERSION}" "${extra_args}"
     else
         echo "ARTIFACTORY_API_KEY or ARTIFACTORY_PASSWORD and ARTIFACTORY_USERNAME must be set"
         exit 1
