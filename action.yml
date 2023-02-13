@@ -13,7 +13,7 @@ runs:
     - uses: actions/setup-python@v2
     - run: ${{ github.action_path }}/main.sh
       env:
-        ACTION: ${{ input.action }}
+        ACTION: ${{ inputs.action }}
       shell: bash
     - run: ${{ github.action_path }}/main.sh
       env:
