@@ -77,10 +77,15 @@ helm_package(){
 
 helm_push(){
     print_title "Push chart"
+    if [[ "${SKIP_REINDEX}" == "true" ]]; then
+        extra_args="--skip-reindex"
+    else
+        extra_args=""
+    fi
     if [[ -v ARTIFACTORY_API_KEY ]]; then
-        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --api-key "${ARTIFACTORY_API_KEY}" --version "${CHART_VERSION}" --skip-reindex
+        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --api-key "${ARTIFACTORY_API_KEY}" --version "${CHART_VERSION}" ${extra_args}
     elif [[ -v ARTIFACTORY_PASSWORD ]] && [[ -v ARTIFACTORY_USERNAME ]]; then
-        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --username "${ARTIFACTORY_USERNAME}" --password "${ARTIFACTORY_PASSWORD}" --version "${CHART_VERSION}" --skip-reindex
+        helm push-artifactory "${CHART_DIR}" "${ARTIFACTORY_URL}" --username "${ARTIFACTORY_USERNAME}" --password "${ARTIFACTORY_PASSWORD}" --version "${CHART_VERSION}" ${extra_args}
     else
         echo "ARTIFACTORY_API_KEY or ARTIFACTORY_PASSWORD and ARTIFACTORY_USERNAME must be set"
         exit 1
