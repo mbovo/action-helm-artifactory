@@ -10,8 +10,6 @@ What kind of change does this PR introduce?
 - [ ] Tests
 - [ ] Other (please specify)
 
-[Jira Link](https://sysdig.atlassian.net/browse/DEVOPS-XXX)
-
 ## What's New?
 
 Describe your PR here
